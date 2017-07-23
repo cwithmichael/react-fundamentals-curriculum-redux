@@ -29,7 +29,7 @@ function weatherByCity(state = {}, action) {
     case RECEIVE_WEATHER:
     case REQUEST_WEATHER:
       return Object.assign({}, state, {
-        [action.weather]: posts(state[action.weather], action)
+        data: weather(state[action.weather], action)
       });
     default:
       return state;

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchWeather
-} from '../actions';
+import { fetchWeather } from '../actions';
 import Home from '../components/Home'
 import Header from '../components/Header'
 
@@ -13,43 +11,42 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(e) {
-    e.preventDefault();
+  handleSubmit(cityName) {
     this.props.dispatch(fetchWeather(cityName));
   }
 
   render() {
-    const { weather, isFetching } = this.props;
     return (
       <div>
         <Header onSubmit={this.handleSubmit} />
         <Home onSubmit={this.handleSubmit} /> 
+        {this.props.isFetching ? '' : JSON.stringify(this.props.weather)}
       </div>
     )
   } 
 }
 
 App.propTypes = {
-  cityName: PropTypes.string.isRequired,
   weather: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
+
 function mapStateToProps(state) {
-  const { cityName, weatherData} = state;
+  const { data } = state;
   const {
     isFetching,
-    data: weather
-  } = weatherData || {
-      isFetching: true,
-      data: {}
+    weather
+  } = data || {
+    isFetching: true,
+    weather: {}
   }
+
   return {
-    cityName,
-    weather,
-    isFetching
+    isFetching,
+    weather
   }
-}
+};
 
 export default connect(mapStateToProps)(App);
