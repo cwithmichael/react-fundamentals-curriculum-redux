@@ -27,6 +27,7 @@
     "webpack-dev-server": "^2.6.0"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "loglevel": "^1.4.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
