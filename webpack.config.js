@@ -1,3 +1,11 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './app/index.html',
+  filename: 'index.html',
+  inject: 'body'
+})
+
 module.exports = {
   entry: __dirname + "/app/main.js",
   output: {
@@ -9,8 +17,10 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         loader: 'babel-loader',
+        include: [
+          path.resolve(__dirname, 'app')
+        ],
         query: {
           presets: ['es2015', 'react']
         }
@@ -18,9 +28,12 @@ module.exports = {
     ]
   },
 
+  plugins: [HtmlWebpackPluginConfig],
+
   devServer: {
-    contentBase: "./public",
+    contentBase: "./app",
     historyApiFallback: true,
-    inline: true
+    inline: true,
+    disableHostCheck: true
   }
 }
