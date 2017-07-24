@@ -1,0 +1,29 @@
+#app {
+  padding-left: 0;
+  padding-right: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+#home {
+  background: url('../images/pattern.svg');
+  height: 100vh;
+  overflow: auto;
+}
+
+label {
+  color: white;
+}
+
+#cityInput {
+  margin: 0;
+}
+
+#cityForm {
+  margin-top: 200px;
+  text-align: center;
+}
+
+#cityForm  button {
+  margin: 0;
+}

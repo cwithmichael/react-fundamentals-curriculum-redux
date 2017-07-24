@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="app" className='container-fluid'>
         <Header onSubmit={this.handleSubmit} />
         <Home onSubmit={this.handleSubmit} /> 
         {this.props.isFetching ? '' : JSON.stringify(this.props.weather)}
