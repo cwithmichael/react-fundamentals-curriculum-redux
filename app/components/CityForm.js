@@ -20,23 +20,29 @@ class CityForm extends Component {
 
   render() {
     return (
-      <div id="home" className="container-fluid">
-      <div className="row">
-      <div className="col-md-4 col-md-offset-4">
-      <form id="cityForm" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-        <label htmlFor="cityInput"><h1>Enter a City and State</h1></label>
-        <input className="form-control" id="cityInput" type="text" value={this.state.value} onChange={this.handleChange}/>
-        <button 
-          type="submit" 
-          className="btn btn-success">
-          Get Weather 
-         </button> 
+        <div>
+        <label>
+          { this.props.parentName !== 'header' ? <h1>Enter City</h1> : '' }
+        </label>
+        <div className="input-group">
+        <input 
+          style={this.props.style.cityInput} 
+          className="form-control" 
+          type="text" 
+          placeholder="Houston, Texas"
+          value={this.state.value} 
+          onChange={this.handleChange}/>
+          <span className="input-group-btn">
+          <button 
+            type="button" 
+            onClick={this.handleSubmit}
+            style={this.props.style.button}
+            className="btn btn-success">
+            Get Weather 
+           </button> 
+          </span>
         </div>
-      </form>
-      </div>
-      </div>
-      </div>
+        </div>
     )
   }
 }

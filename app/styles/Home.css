@@ -14,16 +14,3 @@
 label {
   color: white;
 }
-
-#cityInput {
-  margin: 0;
-}
-
-#cityForm {
-  margin-top: 200px;
-  text-align: center;
-}
-
-#cityForm  button {
-  margin: 0;
-}
