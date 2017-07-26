@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
-import Home from '../components/Home'
-import Header from '../components/Header'
+import Home from '../components/Home';
+import Header from '../components/Header';
+import Forecast from '../components/Forecast';
+import ForecastDetails from '../components/ForecastDetails';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,6 +25,10 @@ class App extends Component {
       <div>
         <Route path='/' render={()=><Header {...this.props}/>}/>
         <Route exact path='/' render={()=><Home {...this.props}/>}/>
+        <Route path='/details' 
+              render={()=><ForecastDetails {...this.props}/>}/>
+        <Route path='/forecast' 
+              render={()=><Forecast {...this.props}/>}/>
       </div>
     )
   } 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class CityForm extends Component {
@@ -6,16 +7,17 @@ class CityForm extends Component {
     super(props);
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
+  handleClick(event) {
     event.preventDefault();
-    this.props.fetchCurrentWeather(this.state.value);
+    //this.props.fetchCurrentWeather(this.state.value);
+    this.props.history.push('/forecast?city='+this.state.value);
   }
 
   render() {
@@ -34,8 +36,8 @@ class CityForm extends Component {
           onChange={this.handleChange}/>
           <span className="input-group-btn">
           <button 
-            type="button" 
-            onClick={this.handleSubmit}
+            type="submit"
+            onClick={this.handleClick}
             style={this.props.style.button}
             className="btn btn-success">
             Get Weather 
