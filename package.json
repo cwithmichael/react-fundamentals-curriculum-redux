@@ -4,7 +4,7 @@
   "description": "<img src=\"https://tylermcginnis.com/tylermcginnis_glasses-300.png\" width=\"300\" align=\"right\">",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --public 0.0.0.0:8080",
+    "start": "webpack-dev-server --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,11 +31,14 @@
     "webpack-dev-server": "^2.6.0"
   },
   "dependencies": {
+    "history": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
     "loglevel": "^1.4.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.2",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   }

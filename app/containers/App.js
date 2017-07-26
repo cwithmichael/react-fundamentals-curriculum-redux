@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchWeather } from '../actions';
+import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
 import Home from '../components/Home'
 import Header from '../components/Header'
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class App extends Component {
   constructor(props) {
@@ -12,41 +14,38 @@ class App extends Component {
   }
 
   handleSubmit(cityName) {
-    this.props.dispatch(fetchWeather(cityName));
+    this.props.fetchCurrentWeather(cityName);
   }
 
   render() {
+    console.log(this.props);
     return (
-      <div id="app" className='container-fluid'>
-        <Header onSubmit={this.handleSubmit} />
-        <Home onSubmit={this.handleSubmit} /> 
-        {this.props.isFetching ? '' : JSON.stringify(this.props.weather)}
+      <div>
+        <Route path='/' render={()=><Header {...this.props}/>}/>
+        <Route exact path='/' render={()=><Home {...this.props}/>}/>
       </div>
     )
   } 
 }
 
-App.propTypes = {
-  weather: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired
+function mapStateToProps(state) {
+  return {
+    isFetching: state.isFetching ? state.isFetching : false,
+    weather : state.weather ? state.weather : {}
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchCurrentWeather: cityName => { 
+      dispatch(fetchCurrentWeather(cityName));
+    },
+    fetchForecastWeather: cityName => {
+      dispatch(fetchForecastWeather(cityName));
+    }
+  }
 }
 
 
-function mapStateToProps(state) {
-  const { data } = state;
-  const {
-    isFetching,
-    weather
-  } = data || {
-    isFetching: true,
-    weather: {}
-  }
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-  return {
-    isFetching,
-    weather
-  }
-};
-
-export default connect(mapStateToProps)(App);

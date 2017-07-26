@@ -1,42 +1,29 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import {
-  REQUEST_WEATHER,
+  REQUEST_CURRENT_WEATHER,
+  REQUEST_FORECAST_WEATHER,
   RECEIVE_WEATHER
 } from './actions';
 
 function weather(
   state = {
     isFetching: false,
-    weather: {}
+    data: {}
   }, action) { 
   switch (action.type) {
-    case REQUEST_WEATHER:
-      return Object.assign({}, state, {
-        isFetching: true
-      });
+    case REQUEST_CURRENT_WEATHER:
+    case REQUEST_FORECAST_WEATHER:
+      return Object.assign({}, state, {isFetching: true, data: {}});
     case RECEIVE_WEATHER:
-      return Object.assign({}, state, {
-        isFetching: false,
-        weather: action.weather
-      });
+      return Object.assign({}, state, {isFetching: false, data: action.data});
     default:
       return state;
   }
 } 
 
-function weatherByCity(state = {}, action) {
-  switch (action.type) {
-    case RECEIVE_WEATHER:
-    case REQUEST_WEATHER:
-      return Object.assign({}, state, {
-        data: weather(state[action.weather], action)
-      });
-    default:
-      return state;
-  }
-}
 
-const rootReducer = weatherByCity;
+const rootReducer = combineReducers({weather, routing: routerReducer});
 
 export default rootReducer;
   
