@@ -3,35 +3,23 @@ import PropTypes from 'prop-types';
 import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
 import Home from '../components/Home';
 import Header from '../components/Header';
-import Forecast from '../components/Forecast';
-import ForecastDetails from '../components/ForecastDetails';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(cityName) {
-    this.props.fetchCurrentWeather(cityName);
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
-        <Route path='/' render={()=><Header {...this.props}/>}/>
-        <Route exact path='/' render={()=><Home {...this.props}/>}/>
-        <Route path='/details' 
-              render={()=><ForecastDetails {...this.props}/>}/>
-        <Route path='/forecast' 
-              render={()=><Forecast {...this.props}/>}/>
+        <Route path={this.props.match.url} render={()=><Header {...this.props}/>}/>
+        <Route path={this.props.match.url} render={()=><Home {...this.props}/>}/>
       </div>
     )
-  } 
+  }
 }
 
 function mapStateToProps(state) {
@@ -43,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchCurrentWeather: cityName => { 
+    fetchCurrentWeather: cityName => {
       dispatch(fetchCurrentWeather(cityName));
     },
     fetchForecastWeather: cityName => {
@@ -54,4 +42,3 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

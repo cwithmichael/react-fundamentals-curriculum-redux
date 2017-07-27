@@ -16,8 +16,8 @@ class CityForm extends Component {
 
   handleClick(event) {
     event.preventDefault();
-    //this.props.fetchCurrentWeather(this.state.value);
-    this.props.history.push('/forecast?city='+this.state.value);
+    this.props.fetchCurrentWeather(this.state.value);
+    this.props.history.push('/forecast/'+this.state.value)
   }
 
   render() {
@@ -27,21 +27,22 @@ class CityForm extends Component {
           { this.props.parentName !== 'header' ? <h1>Enter City</h1> : '' }
         </label>
         <div className="input-group">
-        <input 
-          style={this.props.style.cityInput} 
-          className="form-control" 
-          type="text" 
+        <input
+          style={this.props.style.cityInput}
+          className="form-control"
+          type="text"
           placeholder="Houston, Texas"
-          value={this.state.value} 
+          value={this.state.value}
           onChange={this.handleChange}/>
           <span className="input-group-btn">
-          <button 
-            type="submit"
+          <Link
+            to={'/forecast/' + this.state.value}
             onClick={this.handleClick}
+            role="button"
             style={this.props.style.button}
             className="btn btn-success">
-            Get Weather 
-           </button> 
+            Get Weather
+           </Link>
           </span>
         </div>
         </div>
