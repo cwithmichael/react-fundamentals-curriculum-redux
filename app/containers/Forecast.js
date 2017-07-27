@@ -43,7 +43,10 @@ class Forecast extends React.Component {
                   <img
                   height='200'
                   width='200'
-                  src={'../images/weather-icons/'+item.weather[0].icon+'.svg'}/>
+                  src={
+                    require('../images/weather-icons/'
+                      +item.weather[0].icon+'.svg')
+                  }/>
                 </Link>
                 <figcaption style={{fontSize:20}}>
                   {moment(item.dt*1000).format('dddd[,] MMM D')}

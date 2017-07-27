@@ -4,6 +4,7 @@
   "description": "<img src=\"https://tylermcginnis.com/tylermcginnis_glasses-300.png\" width=\"300\" align=\"right\">",
   "main": "index.js",
   "scripts": {
+    "build": "webpack -p",
     "start": "webpack-dev-server --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +32,7 @@
     "webpack-dev-server": "^2.6.0"
   },
   "dependencies": {
+    "firebase": "^4.1.5",
     "history": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
     "loglevel": "^1.4.1",

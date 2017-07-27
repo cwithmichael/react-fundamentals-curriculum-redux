@@ -7,13 +7,13 @@ class ForecastDetails extends React.Component {
     let weather = this.props.location.state.weather;
     let day = this.props.location.state.day;
     function getDay(selectedDay) {
-      console.log(selectedDay)
+      const image = require('../images/weather-icons/'+selectedDay.weather[0].icon+'.svg');
       return (
         <figure>
         <img
         height='200'
         width='200'
-        src={'../images/weather-icons/'+selectedDay.weather[0].icon+'.svg'}/>
+        src={image}/>
       <figcaption style={{fontSize:20}}>
         <p>{moment(selectedDay.dt*1000).format('dddd[,] MMM D')}</p>
         <p>{selectedDay.weather[0].description}</p>
