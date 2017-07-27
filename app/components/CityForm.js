@@ -23,14 +23,14 @@ class CityForm extends Component {
     return (
         <div>
         <label>
-          { this.props.parentName !== 'header' ? <h1>Enter City</h1> : '' }
+          { this.props.parentName !== 'header' ? <h1>Enter City and State</h1> : '' }
         </label>
         <div className="input-group">
         <input
           style={this.props.style.cityInput}
           className="form-control"
           type="text"
-          placeholder="Houston, Texas"
+          placeholder="Example: Houston, TX"
           value={this.state.value}
           onChange={this.handleChange}/>
           <span className="input-group-btn">
