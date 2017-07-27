@@ -5,6 +5,7 @@ import ForecastDetails from '../components/ForecastDetails';
 import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 class Forecast extends React.Component {
   //<Link to={'/details?city='+city}>{city} </Link>
@@ -14,14 +15,38 @@ class Forecast extends React.Component {
   componentDidMount() {
     console.log('mounted')
     let city = this.props.match.params.city;
-    this.props.fetchCurrentWeather(city);
+    this.props.fetchForecastWeather(city);
   }
 
   render () {
+    let city = this.props.match.params.city;
+    let weatherList = this.props.weather.data.list;
     return (
       <div>
-      <Header {...this.props} />
-      <div>{JSON.stringify(this.props.weather)}</div>
+        <Header {...this.props} />
+        {!weatherList ? 'Loading' :
+        <div className="container-fluid" style={{textAlign:'center'}}>
+          <h1> {city} </h1>
+          {weatherList.map(
+            (item) =>
+              <div
+                style={{padding:40}}
+                className="row-fluid" key={item.dt}>
+              <figure>
+                <Link to={'/details/'+ city}>
+                  <img
+                  height='200'
+                  width='200'
+                  src={'../images/weather-icons/'+item.weather[0].icon+'.svg'}/>
+                </Link>
+                <figcaption style={{fontSize:20}}>
+                  {moment(item.dt*1000).format('dddd[,] MMM D')}
+                </figcaption>
+              </figure>
+              </div>
+          )}
+          </div>
+        }
       </div>
     )
   }

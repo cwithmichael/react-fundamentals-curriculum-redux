@@ -31,7 +31,7 @@ function fetchCurrentWeatherData(cityName) {
   return dispatch => {
     dispatch(requestCurrentWeather(cityName));
     return fetch('http://api.openweathermap.org/data/2.5/weather?q='
-      + cityName 
+      + cityName
       + '&type=accurate&APPID=dfd46adac679a5d07f1ba7e2f6e7841e')
       .then(response => response.json())
       .then(json => dispatch(receiveWeather(cityName, json)))
@@ -42,7 +42,7 @@ function fetchForecastWeatherData(cityName) {
   return dispatch => {
     dispatch(requestForecastWeather(cityName));
     return fetch('http://api.openweathermap.org/data/2.5/forecast/daily?q='
-      + cityName 
+      + cityName
       + '&type=accurate&APPID=dfd46adac679a5d07f1ba7e2f6e7841e&cnt=5')
       .then(response => response.json())
       .then(json => dispatch(receiveWeather(cityName, json)))
