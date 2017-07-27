@@ -43,7 +43,8 @@ function fetchForecastWeatherData(cityName) {
     dispatch(requestForecastWeather(cityName));
     return fetch('http://api.openweathermap.org/data/2.5/forecast/daily?q='
       + cityName
-      + '&type=accurate&APPID=dfd46adac679a5d07f1ba7e2f6e7841e&cnt=5')
+      + '&units=imperial&type=accurate&APPID=dfd46adac679a5d07f1ba7e2f6e7841e'
+      + '&cnt=5')
       .then(response => response.json())
       .then(json => dispatch(receiveWeather(cityName, json)))
   }

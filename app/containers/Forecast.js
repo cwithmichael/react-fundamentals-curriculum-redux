@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
 class Forecast extends React.Component {
-  //<Link to={'/details?city='+city}>{city} </Link>
   constructor (props) {
     super(props);
   }
@@ -33,7 +32,14 @@ class Forecast extends React.Component {
                 style={{padding:40}}
                 className="row-fluid" key={item.dt}>
               <figure>
-                <Link to={'/details/'+ city}>
+                <Link
+                  to={{
+                    pathname:'/details/'+ city,
+                    state: {
+                      weather: this.props.weather,
+                      day: moment(item.dt*1000).format('dddd'),
+                    }
+                  }}>
                   <img
                   height='200'
                   width='200'

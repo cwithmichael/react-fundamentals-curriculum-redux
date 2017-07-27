@@ -15,7 +15,6 @@ class CityForm extends Component {
   }
 
   handleClick(event) {
-    event.preventDefault();
     this.props.fetchForecastWeather(this.state.value);
     this.props.history.push('/forecast/'+this.state.value)
   }
@@ -37,8 +36,8 @@ class CityForm extends Component {
           <span className="input-group-btn">
           <Link
             to={'/forecast/' + this.state.value}
-            onClick={this.handleClick}
             role="button"
+            onClick={this.handleClick}
             style={this.props.style.button}
             className="btn btn-success">
             Get Weather
