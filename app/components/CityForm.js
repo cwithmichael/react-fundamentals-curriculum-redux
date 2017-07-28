@@ -48,4 +48,9 @@ class CityForm extends Component {
   }
 }
 
+CityForm.propTypes = {
+  parentName: PropTypes.string.isRequired,
+  style : PropTypes.object.isRequired,
+  fetchForecastWeather : PropTypes.func.isRequired
+}
 export default CityForm;

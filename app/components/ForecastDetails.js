@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const ForecastDetails = (props) => {
@@ -37,6 +38,10 @@ const ForecastDetails = (props) => {
       }
       </div>
     )
+}
+
+ForecastDetails.propTypes = {
+  location : PropTypes.object.isRequired
 }
 
 export default ForecastDetails;

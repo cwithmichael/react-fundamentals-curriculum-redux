@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ForecastDetails from './ForecastDetails';
 import moment from 'moment';
@@ -6,7 +7,7 @@ import moment from 'moment';
 const Forecast = (props) => {
   let city = props.routeProps.match.params.city;
   let weatherList = props.weather.data.list;
-  
+
   function componentDidUpdate() {
     props.fetchForecastWeather(city);
   }
@@ -50,5 +51,9 @@ const Forecast = (props) => {
     )
 }
 
+Forecast.propTypes = {
+  routeProps : PropTypes.object.isRequired,
+  weather : PropTypes.object.isRequired
+}
 
 export default Forecast;
