@@ -29,7 +29,7 @@ class Forecast extends React.Component {
           {weatherList.map(
             (item) =>
               <div
-                style={{padding:40}}
+                style={{padding:40, display:'inline-block'}}
                 className="row-fluid" key={item.dt}>
               <figure>
                 <Link
@@ -41,8 +41,8 @@ class Forecast extends React.Component {
                     }
                   }}>
                   <img
-                  height='200'
-                  width='200'
+                  height='180'
+                  width='160'
                   src={
                     require('../images/weather-icons/'
                       +item.weather[0].icon+'.svg')
