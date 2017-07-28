@@ -16,7 +16,6 @@ class CityForm extends Component {
 
   handleClick(event) {
     this.props.fetchForecastWeather(this.state.value);
-    this.props.history.push('/forecast/'+this.state.value)
   }
 
   render() {

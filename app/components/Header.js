@@ -13,8 +13,7 @@ var divStyle = {
   }
 };
 
-export default class Header extends Component {
-  render () {
+const Header = (props) => {
     return (
       <div id="header" className="container-fluid" style={{backgroundColor:'orange'}}>
         <div className="row-fluid">
@@ -22,10 +21,11 @@ export default class Header extends Component {
             <h2 style={{paddingTop: 0, color: 'white'}}>Weather Forecast</h2>
           </div>
           <div className="col-md-offset-8">
-            <CityForm parentName='header' style={divStyle} {...this.props}/>
+            <CityForm parentName='header' style={divStyle} {...props}/>
           </div>
         </div>
       </div>
     )
-  }
 }
+
+export default Header;

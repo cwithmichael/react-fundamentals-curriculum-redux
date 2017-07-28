@@ -1,28 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import ForecastDetails from '../components/ForecastDetails';
-import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import ForecastDetails from './ForecastDetails';
 import moment from 'moment';
 
-class Forecast extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-  componentDidMount() {
-    console.log('mounted')
-    let city = this.props.match.params.city;
-    this.props.fetchForecastWeather(city);
+const Forecast = (props) => {
+  let city = props.routeProps.match.params.city;
+  let weatherList = props.weather.data.list;
+  
+  function componentDidUpdate() {
+    props.fetchForecastWeather(city);
   }
 
-  render () {
-    let city = this.props.match.params.city;
-    let weatherList = this.props.weather.data.list;
-    return (
+  return (
       <div>
-        <Header {...this.props} />
         {!weatherList ? 'Loading' :
         <div className="container-fluid" style={{textAlign:'center'}}>
           <h1> {city} </h1>
@@ -36,7 +26,7 @@ class Forecast extends React.Component {
                   to={{
                     pathname:'/details/'+ city,
                     state: {
-                      weather: this.props.weather,
+                      weather: props.weather,
                       day: moment(item.dt*1000).format('dddd'),
                     }
                   }}>
@@ -58,26 +48,7 @@ class Forecast extends React.Component {
         }
       </div>
     )
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    isFetching: state.isFetching ? state.isFetching : false,
-    weather : state.weather ? state.weather : {}
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchCurrentWeather: cityName => {
-      dispatch(fetchCurrentWeather(cityName));
-    },
-    fetchForecastWeather: cityName => {
-      dispatch(fetchForecastWeather(cityName));
-    }
-  }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Forecast);
+export default Forecast;

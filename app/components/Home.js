@@ -13,21 +13,16 @@ var divStyle = {
   }
 };
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render () {
+const Home = (props) => {
     return (
       <div id="home" className="container-fluid">
         <div className="row">
           <div style={divStyle} className="col-md-4 col-md-offset-4">
-            <CityForm parentName='home' style={divStyle} {...this.props} />
+            <CityForm parentName='home' style={divStyle} {...props} />
           </div>
         </div>
       </div>
     )
-  }
 }
 
+export default Home;

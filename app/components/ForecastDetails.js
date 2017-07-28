@@ -1,11 +1,10 @@
 import React from 'react';
-import Header from './Header';
 import moment from 'moment';
 
-class ForecastDetails extends React.Component {
-  render() {
-    let weather = this.props.location.state.weather;
-    let day = this.props.location.state.day;
+const ForecastDetails = (props) => {
+    let weather = props.location.state.weather;
+    let day = props.location.state.day;
+
     function getDay(selectedDay) {
       const image = require('../images/weather-icons/'+selectedDay.weather[0].icon+'.svg');
       return (
@@ -24,10 +23,9 @@ class ForecastDetails extends React.Component {
       </figure>
       )
     }
+
     return (
       <div>
-      <Header />
-
       {weather.isFetching ? 'LOADING' :
       <div className='container-fluid' style={{textAlign: 'center'}}>
         <h1>{weather.data.city.name}</h1>
@@ -39,7 +37,6 @@ class ForecastDetails extends React.Component {
       }
       </div>
     )
-  }
 }
 
 export default ForecastDetails;
