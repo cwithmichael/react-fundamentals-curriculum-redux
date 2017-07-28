@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CityForm from './CityForm';
+import CityForm from '../components/CityForm';
 
 var divStyle = {
   cityInput : {

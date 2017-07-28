@@ -8,6 +8,7 @@ class CityForm extends Component {
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -15,7 +16,13 @@ class CityForm extends Component {
   }
 
   handleClick(event) {
-    this.props.fetchForecastWeather(this.state.value);
+    event.preventDefault();
+    this.props.history.push('/forecast/' + this.state.value)
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.history.push('/forecast/' + this.state.value)
   }
 
   render() {
@@ -24,7 +31,7 @@ class CityForm extends Component {
         <label>
           { this.props.parentName !== 'header' ? <h1>Enter City and State</h1> : '' }
         </label>
-        <div className="input-group">
+        <form onSubmit={this.handleSubmit} className="input-group">
         <input
           style={this.props.style.cityInput}
           className="form-control"
@@ -42,7 +49,7 @@ class CityForm extends Component {
             Get Weather
            </Link>
           </span>
-        </div>
+        </form>
         </div>
     )
   }
@@ -53,4 +60,5 @@ CityForm.propTypes = {
   style : PropTypes.object.isRequired,
   fetchForecastWeather : PropTypes.func.isRequired
 }
-export default CityForm;
+
+export default CityForm
