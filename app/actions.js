@@ -26,8 +26,11 @@ function fetchForecastWeatherData(cityName) {
       + 'key=04c60cac4a604ff3ac880823170807&q='
       + cityName
       + '&days=5')
-      .then(response => response.json())
+      .then( function (response) {
+        return response.json()
+      })
       .then(json => dispatch(receiveWeather(cityName, json)))
+      .catch(err => dispatch(receiveWeather(cityName, {error: err})))
   }
 }
 

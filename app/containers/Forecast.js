@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
+import { fetchForecastWeather } from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ForecastDetails from './ForecastDetails';
@@ -24,6 +24,14 @@ class Forecast extends React.Component {
     }
   }
   render() {
+    if (this.props.weather.data.hasOwnProperty('error')) {
+      return (
+        <div className="container-fluid" style={{textAlign:'center'}}>
+          <h1> There was an error with your request</h1>
+          <Link to='/'>Go back</Link>
+        </div>
+      )
+    }
     return (
         <div>
           <Header {...this.props}/>
@@ -77,9 +85,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchCurrentWeather: cityName => {
-      dispatch(fetchCurrentWeather(cityName));
-    },
     fetchForecastWeather: cityName => {
       dispatch(fetchForecastWeather(cityName));
     }

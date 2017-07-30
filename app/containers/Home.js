@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header'
 import CityForm from '../components/CityForm';
 import '../styles/Home.css';
-import { fetchCurrentWeather, fetchForecastWeather } from '../actions';
+import { fetchForecastWeather } from '../actions';
 import { connect } from 'react-redux';
 
 var divStyle = {
@@ -40,9 +40,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchCurrentWeather: cityName => {
-      dispatch(fetchCurrentWeather(cityName));
-    },
     fetchForecastWeather: cityName => {
       dispatch(fetchForecastWeather(cityName));
     }
