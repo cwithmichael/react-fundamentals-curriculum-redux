@@ -3,6 +3,9 @@ import fetch from 'isomorphic-fetch';
 export const REQUEST_FORECAST_WEATHER = 'REQUEST_FORECAST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 
+let lastCity = '';
+let lastData = {};
+
 function requestForecastWeather(cityName) {
   return {
     type: REQUEST_FORECAST_WEATHER,
@@ -11,6 +14,8 @@ function requestForecastWeather(cityName) {
 }
 
 function receiveWeather(cityName, json) {
+  lastCity = cityName;
+  lastData = json;
   return {
     type: RECEIVE_WEATHER,
     cityName: cityName,
@@ -20,6 +25,9 @@ function receiveWeather(cityName, json) {
 }
 
 function fetchForecastWeatherData(cityName) {
+  if (cityName === lastCity) {
+    return {type: RECEIVE_WEATHER, cityName: cityName, data: lastData};
+  }
   return dispatch => {
     dispatch(requestForecastWeather(cityName));
     return fetch('https://api.apixu.com/v1/forecast.json?'
